@@ -1,1 +1,1 @@
-﻿print("Hallo")
+﻿cpr('#', 0, 0)

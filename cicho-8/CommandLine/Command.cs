@@ -1,9 +1,9 @@
-﻿namespace cicho.CommandLine;
+﻿namespace cicho_8.CommandLine;
 
 public struct Command
 {
     public string Cmd;
-    public string[]? Args;
+    public string[] Args;
 
     public Command(string raw)
     {

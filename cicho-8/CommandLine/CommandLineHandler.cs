@@ -1,4 +1,4 @@
-﻿namespace cicho.CommandLine;
+﻿namespace cicho_8.CommandLine;
 
 public class CommandLineHandler
 {
@@ -11,6 +11,7 @@ public class CommandLineHandler
     
     public static int CheckCommand(Command command)
     {
+        
         if (command.Cmd.Length == 0)
         {
             return -1;
@@ -19,10 +20,15 @@ public class CommandLineHandler
         foreach (var (key, executor) in _executors)
         {
             if (key != command.Cmd && !executor.Alisas.Contains(command.Cmd)) continue;
-            executor.Execute(command.Cmd, command.Args);
-            return 0;
+            return executor.Execute(command.Cmd, command.Args);
         }
 
         return 1;
     }
+
+    public static void ClearConsole()
+    {
+        Console.Clear();
+    }
+    
 }

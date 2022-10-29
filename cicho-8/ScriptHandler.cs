@@ -1,6 +1,7 @@
-﻿using NLua;
+﻿using cicho_8.CommandLine;
+using NLua;
 
-namespace cicho;
+namespace cicho_8;
 
 public static class ScriptHandler
 {
@@ -28,25 +29,30 @@ public static class ScriptHandler
             "_update"
         };
         _referencedFunctions = new Dictionary<string, LuaFunction>();
+        RegisterFunctions();
     }
     
     public static void Load(string scriptPath)
     {
-        ScriptPath = scriptPath;
+        if (!File.Exists(Path.Combine(_root, scriptPath)))
+        {
+            throw new FileNotFoundException();
+        }   
+        ScriptPath = Path.Combine(_root, scriptPath);
     }
 
-    public static void Run(string scriptPath = "")
+    public static void Run(string args = "")
     {
-        if (scriptPath == string.Empty)
-        {
-            scriptPath = ScriptPath;
-        }
-
-        if (!File.Exists(scriptPath))
+        if (!File.Exists(ScriptPath))
         {
             throw new FileNotFoundException();
         }
-        
-        Lua.DoFile(scriptPath);
+        Lua.DoFile(ScriptPath);
+    }
+
+    private static void RegisterFunctions()
+    {
+        Lua.RegisterFunction("cls", typeof(CommandLineHandler).GetMethod("ClearConsole"));
+        Lua.RegisterFunction("cpr", typeof(CommandLineHandler).GetMethod("PrintChar"));
     }
 }

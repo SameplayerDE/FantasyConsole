@@ -10,8 +10,7 @@
 
     <ItemGroup>
       <PackageReference Include="NLua" Version="1.6.0" />
-      <PackageReference Include="OpenTK" Version="5.0.0-pre.7" />
-      <PackageReference Include="sdl2.nuget" Version="2.0.22" />
+      <PackageReference Include="SFML.Net" Version="2.5.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -19,6 +18,14 @@
       <Content Include="Scripts\game.lua">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="resources\GamerGirl.ttf" />
+      <Content Include="resources\GamerGirl.ttf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="resources" />
     </ItemGroup>
 
 </Project>
